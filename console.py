@@ -23,3 +23,10 @@ book_2 = Book("A Graveyard for Lunatics", author2, True)
 book_repository.add_book(book_2)
 book_3 = Book("The Lincoln Lawyer", author3)
 book_repository.add_book(book_3)
+book_4 = Book("The Shining", author1)
+book_repository.add_book(book_4)
+
+# books = book_repository.select_books_by_author(1)
+
+# for book in books:
+#     print(book.__dict__)

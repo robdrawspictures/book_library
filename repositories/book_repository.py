@@ -35,6 +35,20 @@ def select_all():
         books.append(book)
     return books
 
+def select_books_by_author(id):
+    books = []
+
+    sql = "SELECT * FROM books WHERE author_id = %s"
+    values = [id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        author = author_repository.select(row['author_id'])
+        book = Book(row['title'], author, row['completed'], row['id'])
+        books.append(book)
+    return books
+
+
 def delete_all():
     sql = "DELETE FROM books"
     run_sql(sql)

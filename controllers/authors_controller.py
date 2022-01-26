@@ -10,3 +10,8 @@ authors_blueprint = Blueprint("authors", __name__)
 def authors():
     authors = author_repository.select_all()
     return render_template("authors/index.html", all_authors = authors)
+
+@authors_blueprint.route("/<id>/books", methods=['GET'])
+def books(id):
+    books = book_repository.select_books_by_author(id)
+    return render_template("authors/books.html", all_books = books)
