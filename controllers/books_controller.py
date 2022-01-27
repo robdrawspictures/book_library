@@ -11,9 +11,15 @@ def books():
     books = book_repository.select_all()
     return render_template("books/index.html", all_books = books)
 
-@books_blueprint.route("/books/add", methods=['GET'])
+@books_blueprint.route("/<id>/book/", methods=['GET'])
+def book(id):
+    book = book_repository.select(id)
+    return render_template("books/book.html", book = book)
+
+@books_blueprint.route("/books/new", methods=['GET'])
 def new_book():
-    return render_template("/books/add.html")
+    authors = author_repository.select_all()
+    return render_template("/books/new.html", existing_authors = authors)
 
 @books_blueprint.route("/books", methods=['POST'])
 def add_book():
@@ -23,3 +29,5 @@ def add_book():
     book = Book(title, author)
     book_repository.add_book(book)
     return redirect('/books')
+
+
